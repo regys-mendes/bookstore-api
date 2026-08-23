@@ -37,5 +37,10 @@ public class BookService {
         return book.orElseThrow(() -> new IllegalArgumentException("Resource not found. Id"  + id));
     }
 
+    public BookResponseDTO findById(Long id){
+        Book book = findByIdentity(id);
+        return new BookResponseDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getYear(), book.getStatus());
+    }
+
 
 }
