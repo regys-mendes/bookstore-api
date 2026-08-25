@@ -42,5 +42,9 @@ public class BookService {
         return new BookResponseDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getYear(), book.getStatus());
     }
 
-
+    public BookResponseDTO insert(BookInsertDTO book){
+        Book newBook = new Book(null,  book.getTitle(), book.getAuthor(), book.getYear(), book.getStatus());
+        repository.save(newBook);
+        return new BookResponseDTO(newBook.getId(), newBook.getTitle(), newBook.getAuthor(), newBook.getYear(), newBook.getStatus());
+    }
 }
