@@ -1,6 +1,8 @@
 package com.regysmendes.bookstore.services;
 
+import com.regysmendes.bookstore.dto.BookInsertDTO;
 import com.regysmendes.bookstore.dto.BookResponseDTO;
+import com.regysmendes.bookstore.dto.BookUpdateDTO;
 import com.regysmendes.bookstore.entities.Book;
 import com.regysmendes.bookstore.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -46,5 +48,18 @@ public class BookService {
         Book newBook = new Book(null,  book.getTitle(), book.getAuthor(), book.getYear(), book.getStatus());
         repository.save(newBook);
         return new BookResponseDTO(newBook.getId(), newBook.getTitle(), newBook.getAuthor(), newBook.getYear(), newBook.getStatus());
+    }
+
+    public BookResponseDTO update(Long id, BookUpdateDTO updateDTO){
+        Book book = findByIdentity(id);
+        updateData(book, updateDTO);
+        repository.save(book);
+        return new BookResponseDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getYear(), book.getStatus());
+    }
+
+    public void updateData(Book book, BookUpdateDTO update){
+        book.setTitle(update.getTitle());
+        book.setAuthor(update.getAuthor());
+        book.setYear(update.getYear());
     }
 }
