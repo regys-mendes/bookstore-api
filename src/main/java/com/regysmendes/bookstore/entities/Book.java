@@ -15,18 +15,19 @@ public class Book implements Serializable {
     private Long id;
     private String title;
     private String author;
-    private LocalDate year;
+    private LocalDate publicationYear;
 
+    @Enumerated(value = EnumType.STRING)
     private BookStatus status;
 
     public Book(){
     }
 
-    public Book(Long id, String title, String author, LocalDate year, BookStatus status) {
+    public Book(Long id, String title, String author, LocalDate publicationYear, BookStatus status) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.year = year;
+        this.publicationYear = publicationYear;
         this.status = status;
     }
 
@@ -54,12 +55,12 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public LocalDate getYear() {
-        return year;
+    public LocalDate getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setYear(LocalDate year) {
-        this.year = year;
+    public void setPublicationYear(LocalDate publicationYear) {
+        this.publicationYear = publicationYear;
     }
 
     public BookStatus getStatus() {

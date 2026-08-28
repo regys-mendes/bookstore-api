@@ -8,7 +8,6 @@ import com.regysmendes.bookstore.entities.BookStatus;
 import com.regysmendes.bookstore.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +29,7 @@ public class BookService {
 
         for (Book book : list ){
 
-            BookResponseDTO responseDTO = new BookResponseDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getYear(), book.getStatus());
+            BookResponseDTO responseDTO = new BookResponseDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getPublicationYear(), book.getStatus());
             result.add(responseDTO);
         }
         return result;
@@ -43,13 +42,13 @@ public class BookService {
 
     public BookResponseDTO findById(Long id){
         Book book = findByIdentity(id);
-        return new BookResponseDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getYear(), book.getStatus());
+        return new BookResponseDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getPublicationYear(), book.getStatus());
     }
 
     public BookResponseDTO insert(BookInsertDTO book){
         Book newBook = new Book(null,  book.getTitle(), book.getAuthor(), book.getYear(), book.getStatus());
         repository.save(newBook);
-        return new BookResponseDTO(newBook.getId(), newBook.getTitle(), newBook.getAuthor(), newBook.getYear(), newBook.getStatus());
+        return new BookResponseDTO(newBook.getId(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublicationYear(), newBook.getStatus());
     }
 
     public void delete(Long id){
@@ -61,13 +60,13 @@ public class BookService {
         Book book = findByIdentity(id);
         updateData(book, updateDTO);
         repository.save(book);
-        return new BookResponseDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getYear(), book.getStatus());
+        return new BookResponseDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getPublicationYear(), book.getStatus());
     }
 
     public void updateData(Book book, BookUpdateDTO update){
         book.setTitle(update.getTitle());
         book.setAuthor(update.getAuthor());
-        book.setYear(update.getYear());
+        book.setPublicationYear(update.getPublicationYear());
     }
 
     public Book updateStatus(Long id, BookStatus newStatus){

@@ -11,18 +11,18 @@ public class BookResponseDTO {
     private Long id;
     private String title;
     private String author;
-    private LocalDate year;
+    private LocalDate publicationYear;
 
     private BookStatus status;
 
     public BookResponseDTO(){
     }
 
-    public BookResponseDTO(Long id, String title, String author, LocalDate year, BookStatus status) {
+    public BookResponseDTO(Long id, String title, String author, LocalDate publicationYear, BookStatus status) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.year = year;
+        this.publicationYear = publicationYear;
         this.status = status;
     }
 
@@ -50,12 +50,12 @@ public class BookResponseDTO {
         this.author = author;
     }
 
-    public LocalDate getYear() {
-        return year;
+    public LocalDate getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setYear(LocalDate year) {
-        this.year = year;
+    public void setPublicationYear(LocalDate publicationYear) {
+        this.publicationYear = publicationYear;
     }
 
     public BookStatus getStatus() {

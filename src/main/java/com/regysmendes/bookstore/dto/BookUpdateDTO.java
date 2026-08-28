@@ -6,15 +6,15 @@ public class BookUpdateDTO {
 
     private String title;
     private String author;
-    private LocalDate year;
+    private LocalDate publicationYear;
 
    public BookUpdateDTO(){
    }
 
-    public BookUpdateDTO(String title, String author, LocalDate year) {
+    public BookUpdateDTO(String title, String author, LocalDate publicationYear) {
         this.title = title;
         this.author = author;
-        this.year = year;
+        this.publicationYear = publicationYear;
     }
 
     public String getTitle() {
@@ -33,11 +33,11 @@ public class BookUpdateDTO {
         this.author = author;
     }
 
-    public LocalDate getYear() {
-        return year;
+    public LocalDate getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setYear(LocalDate year) {
-        this.year = year;
+    public void setPublicationYear(LocalDate publicationYear) {
+        this.publicationYear = publicationYear;
     }
 }
