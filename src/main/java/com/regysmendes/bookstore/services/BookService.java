@@ -4,9 +4,11 @@ import com.regysmendes.bookstore.dto.BookInsertDTO;
 import com.regysmendes.bookstore.dto.BookResponseDTO;
 import com.regysmendes.bookstore.dto.BookUpdateDTO;
 import com.regysmendes.bookstore.entities.Book;
+import com.regysmendes.bookstore.entities.BookStatus;
 import com.regysmendes.bookstore.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +52,11 @@ public class BookService {
         return new BookResponseDTO(newBook.getId(), newBook.getTitle(), newBook.getAuthor(), newBook.getYear(), newBook.getStatus());
     }
 
+    public void delete(Long id){
+        findByIdentity(id);
+        repository.deleteById(id);
+    }
+
     public BookResponseDTO update(Long id, BookUpdateDTO updateDTO){
         Book book = findByIdentity(id);
         updateData(book, updateDTO);
@@ -62,4 +69,12 @@ public class BookService {
         book.setAuthor(update.getAuthor());
         book.setYear(update.getYear());
     }
+
+    public Book updateStatus(Long id, BookStatus newStatus){
+        Book book = findByIdentity(id);
+        book.setStatus(newStatus);
+        return repository.save(book);
+    }
+
+
 }

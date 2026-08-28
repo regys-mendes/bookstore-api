@@ -66,6 +66,10 @@ public class Book implements Serializable {
         return status;
     }
 
+    public void setStatus(BookStatus status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
