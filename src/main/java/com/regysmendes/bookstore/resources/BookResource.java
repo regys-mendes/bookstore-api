@@ -25,6 +25,10 @@ public class BookResource {
        return ResponseEntity.ok().body(responseDTO);
     }
 
-
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<BookResponseDTO> findById(@PathVariable Long id){
+        BookResponseDTO responseDTO = service.findById(id);
+        return ResponseEntity.ok().body(responseDTO);
+    }
 
 }
