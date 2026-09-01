@@ -1,12 +1,15 @@
 package com.regysmendes.bookstore.resources;
 
+import com.regysmendes.bookstore.dto.BookInsertDTO;
 import com.regysmendes.bookstore.dto.BookResponseDTO;
+import com.regysmendes.bookstore.entities.Book;
+import com.regysmendes.bookstore.entities.BookStatus;
 import com.regysmendes.bookstore.services.BookService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -29,6 +32,26 @@ public class BookResource {
     public ResponseEntity<BookResponseDTO> findById(@PathVariable Long id){
         BookResponseDTO responseDTO = service.findById(id);
         return ResponseEntity.ok().body(responseDTO);
+    }
+
+    @PatchMapping(value = "/status/{id}")
+    public ResponseEntity<Book> updateStatus(@PathVariable Long id, BookStatus status){
+        Book book = service.updateStatus(id, status);
+        return ResponseEntity.ok().body(book);
+    }
+
+
+    @PostMapping
+    public ResponseEntity<BookResponseDTO> insert(@RequestBody BookInsertDTO insertDTO){
+        BookResponseDTO responseDTO = service.insert(insertDTO);
+
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(responseDTO.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(responseDTO);
     }
 
 }
