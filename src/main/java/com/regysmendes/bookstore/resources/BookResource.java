@@ -54,4 +54,10 @@ public class BookResource {
         return ResponseEntity.created(uri).body(responseDTO);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable  Long id){
+        service.deleteById(id);
+      return ResponseEntity.noContent().build();
+    }
+
 }
