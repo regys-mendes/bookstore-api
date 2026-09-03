@@ -2,6 +2,7 @@ package com.regysmendes.bookstore.resources;
 
 import com.regysmendes.bookstore.dto.BookInsertDTO;
 import com.regysmendes.bookstore.dto.BookResponseDTO;
+import com.regysmendes.bookstore.dto.BookUpdateDTO;
 import com.regysmendes.bookstore.entities.Book;
 import com.regysmendes.bookstore.entities.BookStatus;
 import com.regysmendes.bookstore.services.BookService;
@@ -35,7 +36,7 @@ public class BookResource {
     }
 
     @PatchMapping(value = "/status/{id}")
-    public ResponseEntity<Book> updateStatus(@PathVariable Long id, BookStatus status){
+    public ResponseEntity<Book> updateStatus(@PathVariable Long id, @RequestBody BookStatus status){
         Book book = service.updateStatus(id, status);
         return ResponseEntity.ok().body(book);
     }
@@ -52,6 +53,12 @@ public class BookResource {
                 .toUri();
 
         return ResponseEntity.created(uri).body(responseDTO);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<BookResponseDTO> update(@PathVariable Long id, @RequestBody BookUpdateDTO dto){
+        BookResponseDTO responseDTO = service.update(id, dto);
+        return ResponseEntity.ok().body(responseDTO);
     }
 
     @DeleteMapping(value = "/{id}")

@@ -46,12 +46,12 @@ public class BookService {
     }
 
     public BookResponseDTO insert(BookInsertDTO book){
-        Book newBook = new Book(null,  book.getTitle(), book.getAuthor(), book.getYear(), book.getStatus());
+        Book newBook = new Book(null,  book.getTitle(), book.getAuthor(), book.getPublicationYear(), book.getStatus());
         repository.save(newBook);
         return new BookResponseDTO(newBook.getId(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublicationYear(), newBook.getStatus());
     }
 
-    public void delete(Long id){
+    public void deleteById(Long id){
         findByIdentity(id);
         repository.deleteById(id);
     }

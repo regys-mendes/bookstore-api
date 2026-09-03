@@ -8,16 +8,16 @@ public class BookInsertDTO {
 
     private String title;
     private String author;
-    private LocalDate year;
+    private LocalDate publicationYear;
     private BookStatus status;
 
     public BookInsertDTO(){
     }
 
-    public BookInsertDTO(String title, String author, LocalDate year, BookStatus status) {
+    public BookInsertDTO(String title, String author, LocalDate publicationYear, BookStatus status) {
         this.title = title;
         this.author = author;
-        this.year = year;
+        this.publicationYear = publicationYear;
         this.status = status;
     }
 
@@ -37,12 +37,12 @@ public class BookInsertDTO {
         this.author = author;
     }
 
-    public LocalDate getYear() {
-        return year;
+    public LocalDate getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setYear(LocalDate year) {
-        this.year = year;
+    public void setPublicationYear(LocalDate publicationYear) {
+        this.publicationYear = publicationYear;
     }
 
     public BookStatus getStatus() {

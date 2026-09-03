@@ -1,6 +1,5 @@
 package com.regysmendes.bookstore.dto;
 
-import com.regysmendes.bookstore.entities.Book;
 import com.regysmendes.bookstore.entities.BookStatus;
 
 import java.time.LocalDate;
