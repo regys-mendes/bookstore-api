@@ -5,6 +5,7 @@ import com.regysmendes.bookstore.dto.BookResponseDTO;
 import com.regysmendes.bookstore.dto.BookUpdateDTO;
 import com.regysmendes.bookstore.entities.Book;
 import com.regysmendes.bookstore.entities.BookStatus;
+import com.regysmendes.bookstore.exceptions.ObjectNotFoundException;
 import com.regysmendes.bookstore.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,7 @@ public class BookService {
 
     public Book findByIdentity(Long id){
         Optional<Book> book = repository.findById(id);
-        return book.orElseThrow(() -> new IllegalArgumentException("Resource not found. Id"  + id));
+        return book.orElseThrow(() -> new ObjectNotFoundException("Resource not found. Id"  + id));
     }
 
     public BookResponseDTO findById(Long id){

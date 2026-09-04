@@ -14,11 +14,11 @@ public class StandardError implements Serializable {
     public StandardError(){
     }
 
-    public StandardError(Long timeStamp, Integer status, String message, String error, String path) {
+    public StandardError(Long timeStamp, Integer status, String error, String message, String path) {
         this.timeStamp = timeStamp;
         this.status = status;
-        this.message = message;
         this.error = error;
+        this.message = message;
         this.path = path;
     }
 
